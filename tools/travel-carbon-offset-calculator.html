@@ -4,47 +4,167 @@ title: "Travel Carbon Offset Calculator"
 description: "Estimate emissions for flights, overland journeys, and stays, then connect them to trusted offset projects."
 function: calcCarbon
 ---
-<section class="space-y-4">
-  <h2 class="text-2xl font-semibold text-white">Goal</h2>
-  <p>
-    The Travel Carbon Offset Calculator estimates the climate impact of common travel plans. It simplifies CO₂e math and pairs
-    the totals with curated offset ideas that align with Fold &amp; Ride&apos;s sustainability mission.
-  </p>
+<section class="space-y-8">
+  <header class="space-y-4 text-white">
+    <p class="text-sm uppercase tracking-wide text-sky-300">Carbon Planning</p>
+    <h1 class="text-3xl font-bold sm:text-4xl">Estimate, understand, and offset your travel emissions</h1>
+    <p class="max-w-3xl text-base text-slate-200">
+      Enter your journey details below to see the projected carbon impact of flights, rail, and other transport options. The
+      calculator highlights the biggest emission drivers and offers vetted offset suggestions so you can balance every trip.
+    </p>
+  </header>
+
+  <section class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+    <form
+      id="carbon-calculator-form"
+      class="space-y-6 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6 shadow-xl shadow-black/20"
+      aria-describedby="carbon-calculator-helper"
+    >
+      <div id="carbon-calculator-helper" class="text-sm text-slate-300">
+        Provide as much detail as you know. The calculator supports single trips or recurring journeys and can estimate
+        distances from common origin and destination pairs.
+      </div>
+
+      <div class="space-y-2">
+        <label for="travel-mode" class="block text-sm font-medium text-white">Mode of travel</label>
+        <select
+          id="travel-mode"
+          name="travelMode"
+          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+          required
+        >
+          <option value="" disabled selected>Select a transport mode</option>
+          <option value="flight">Flight</option>
+          <option value="train">Train</option>
+          <option value="bus">Bus</option>
+          <option value="car">Car</option>
+          <option value="ferry">Ferry</option>
+        </select>
+        <p class="text-xs text-slate-400">Different emission factors are applied for each mode.</p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="space-y-2">
+          <label for="origin" class="block text-sm font-medium text-white">Origin</label>
+          <input
+            id="origin"
+            name="origin"
+            type="text"
+            placeholder="City, station, or airport"
+            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            aria-describedby="origin-helper"
+          />
+          <p id="origin-helper" class="text-xs text-slate-400">Use IATA, station codes, or city names for best accuracy.</p>
+        </div>
+        <div class="space-y-2">
+          <label for="destination" class="block text-sm font-medium text-white">Destination</label>
+          <input
+            id="destination"
+            name="destination"
+            type="text"
+            placeholder="Arrival city or terminal"
+            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            aria-describedby="destination-helper"
+          />
+          <p id="destination-helper" class="text-xs text-slate-400">
+            Leave origin and destination blank to enter a custom distance below.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="distance" class="block text-sm font-medium text-white">Distance (optional)</label>
+        <input
+          id="distance"
+          name="distance"
+          type="number"
+          min="0"
+          step="1"
+          placeholder="Enter kilometers"
+          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+        />
+        <p class="text-xs text-slate-400">If provided, this value overrides the route lookup.</p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="space-y-2">
+          <label for="cabin-class" class="block text-sm font-medium text-white">Cabin or vehicle class</label>
+          <select
+            id="cabin-class"
+            name="cabinClass"
+            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+          >
+            <option value="" disabled selected>Select a class</option>
+            <option value="economy">Economy</option>
+            <option value="premium">Premium Economy</option>
+            <option value="business">Business</option>
+            <option value="first">First</option>
+            <option value="electric">Electric vehicle</option>
+            <option value="hybrid">Hybrid vehicle</option>
+            <option value="diesel">Diesel vehicle</option>
+          </select>
+          <p class="text-xs text-slate-400">Aircraft cabin or vehicle efficiency setting.</p>
+        </div>
+        <div class="space-y-2">
+          <label for="frequency" class="block text-sm font-medium text-white">Trip frequency</label>
+          <input
+            id="frequency"
+            name="frequency"
+            type="number"
+            min="1"
+            step="1"
+            value="1"
+            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            aria-describedby="frequency-helper"
+          />
+          <p id="frequency-helper" class="text-xs text-slate-400">Number of times you complete this trip per year.</p>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="passengers" class="block text-sm font-medium text-white">Passengers</label>
+        <input
+          id="passengers"
+          name="passengers"
+          type="number"
+          min="1"
+          step="1"
+          value="1"
+          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+          aria-describedby="passengers-helper"
+        />
+        <p id="passengers-helper" class="text-xs text-slate-400">Include all travellers you are offsetting for.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-full bg-sky-500 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-sky-400 focus:outline-none focus:ring focus:ring-sky-500/40"
+        >
+          Calculate emissions
+        </button>
+        <p class="text-xs text-slate-400">Results update instantly when new data is available.</p>
+      </div>
+    </form>
+
+    <div class="space-y-6">
+      <section class="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6 shadow-lg shadow-black/20">
+        <h2 class="text-lg font-semibold text-white">Emission summary</h2>
+        <p class="text-sm text-slate-300">Your total carbon impact for this journey appears below.</p>
+        <div id="carbon-results" class="mt-4 space-y-3 text-sm text-slate-200">
+          <p class="text-slate-400">Run a calculation to see totals, per-passenger emissions, and category breakdowns.</p>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6 shadow-lg shadow-black/20">
+        <h2 class="text-lg font-semibold text-white">Offset ideas</h2>
+        <p class="text-sm text-slate-300">We recommend balancing emissions with projects that match your values.</p>
+        <div id="offset-suggestions" class="mt-4 space-y-3 text-sm text-slate-200">
+          <p class="text-slate-400">Calculated offsets will populate with vetted partner projects and pricing.</p>
+        </div>
+      </section>
+    </div>
+  </section>
 </section>
-<section class="grid gap-6 lg:grid-cols-2">
-  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
-    <h3 class="text-lg font-semibold text-white">Inputs</h3>
-    <ul class="list-disc space-y-2 pl-5">
-      <li>Transport mode (flight, train, bus, car, ferry)</li>
-      <li>Distance or route lookup via airport and station codes</li>
-      <li>Cabin class or vehicle efficiency profile</li>
-      <li>Trip frequency or number of travellers</li>
-      <li>Accommodation type with nightly counts</li>
-    </ul>
-  </div>
-  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
-    <h3 class="text-lg font-semibold text-white">Outputs</h3>
-    <ul class="list-disc space-y-2 pl-5">
-      <li>Total emissions in kilograms of CO₂e</li>
-      <li>Category breakdown (transport vs. stay)</li>
-      <li>Suggested offsets with estimated project cost</li>
-      <li>Tips for reduction before offsetting</li>
-      <li>Downloadable summary for personal reporting</li>
-    </ul>
-  </div>
-</section>
-<section class="space-y-3">
-  <h2 class="text-2xl font-semibold text-white">Data &amp; Methodology</h2>
-  <p>
-    Calculations reference Atmosfair and internal conversion tables. MVP copy explains assumptions clearly so travellers know how
-    numbers were produced before we automate the API calls.
-  </p>
-</section>
-<section class="space-y-3">
-  <h2 class="text-2xl font-semibold text-white">What&apos;s Next</h2>
-  <ul class="list-disc space-y-2 pl-5">
-    <li>Live API integrations for flight and route emissions</li>
-    <li>Dynamic charts that show impact by category</li>
-    <li>Offset marketplace with partner verification badges</li>
-  </ul>
-</section>
+
+<script type="module" src="/assets/js/carbon-calculator.js" defer></script>
