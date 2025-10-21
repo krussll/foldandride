@@ -2,6 +2,7 @@
 layout: page
 title: "Fold & Ride Toolkit"
 description: "Overview of the MVP travel tools and their upcoming capabilities."
+image: "{{ '/assets/images/og-default.jpg' | absolute_url }}"
 ---
 
 The toolkit gathers five core calculators designed around the first release of the platform. Each page outlines the purpose of the feature, the kind of inputs it will accept, and the early ideas for output formatting.
