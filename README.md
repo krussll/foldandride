@@ -32,3 +32,7 @@ A GitHub Pages–ready Jekyll site that previews the Fold & Ride digital nomad t
 - `_posts/` contains a sample Lisbon field notes article to confirm the blog pipeline.
 
 When you are ready to implement the real calculators, follow the spec in `docs/MVP_TECH_SPEC.md` to connect the front-end sections to Google Cloud Functions.
+
+## Possible affliate programs
+
+https://simplecarbon.co.uk/affiliate
