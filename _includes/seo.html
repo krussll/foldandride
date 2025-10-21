@@ -1,3 +1,85 @@
 <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 <meta name="description" content="{{ page.description | default: site.description }}" />
 {% seo %}
+{% assign base_url = site.url | append: site.baseurl %}
+{% assign homepage_url = base_url | append: '/' %}
+{% assign organization_logo = base_url | append: '/assets/icons/foldandride-logo.svg' %}
+{% assign contact_page = base_url | append: '/contact/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site.title | jsonify }},
+  "url": {{ base_url | jsonify }},
+  "logo": {{ organization_logo | jsonify }},
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "email": {{ site.email | jsonify }},
+      "contactType": "customer support",
+      "url": {{ contact_page | jsonify }}
+    }
+  ]
+}
+</script>
+{% if page.url contains '/tools/' %}
+  {% assign is_tools_index = page.url == '/tools/' %}
+  {% assign tools_url = base_url | append: '/tools/' %}
+  {% capture breadcrumb_json %}
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": {{ homepage_url | jsonify }}
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": {{ tools_url | jsonify }}
+      }{% unless is_tools_index %},
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{ page.title | default: page.name | jsonify }},
+        "item": {{ base_url | append: page.url | jsonify }}
+      }{% endunless %}
+    ]
+  }
+  {% endcapture %}
+  <script type="application/ld+json">{{ breadcrumb_json | strip }}</script>
+{% elsif page.url contains '/guides/' %}
+  {% assign is_guides_index = page.url == '/guides/' %}
+  {% assign guides_url = base_url | append: '/guides/' %}
+  {% capture breadcrumb_json %}
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": {{ homepage_url | jsonify }}
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": {{ guides_url | jsonify }}
+      }{% unless is_guides_index %},
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{ page.title | default: page.name | jsonify }},
+        "item": {{ base_url | append: page.url | jsonify }}
+      }{% endunless %}
+    ]
+  }
+  {% endcapture %}
+  <script type="application/ld+json">{{ breadcrumb_json | strip }}</script>
+{% endif %}
