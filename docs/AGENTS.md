@@ -47,14 +47,18 @@ Fold & Ride provides free, smart online tools for digital nomads and long-term t
 - **Line height:** 1.5–1.7  
 - **Max width:** 70ch  
 
-**Imagery & Icons:**  
-- Simple vector icons (Lucide / Heroicons)  
-- Minimal line illustrations (maps, suitcases, planes, laptops)  
-- Avoid cluttered photos or stock models.  
+**Imagery & Icons:**
+- Simple vector icons (Lucide / Heroicons)
+- Minimal line illustrations (maps, suitcases, planes, laptops)
+- Avoid cluttered photos or stock models.
+- Always reference images with absolute URLs (e.g., Liquid's `absolute_url` filter) to prevent broken paths.
 
-**Logo Usage:**  
-- Text-based logo: “Fold & Ride” in Poppins Bold.  
+**Logo Usage:**
+- Text-based logo: “Fold & Ride” in Poppins Bold.
 - Teal (#0D9488) primary, white variant for dark backgrounds.
+
+**Links & Navigation:**
+- Always use absolute URLs for internal links (Liquid `absolute_url` or full `https://foldandride.com/...`) to avoid broken references when shared or embedded.
 
 ---
 
