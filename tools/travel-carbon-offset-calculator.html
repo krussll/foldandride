@@ -1,17 +1,50 @@
 ---
-layout: default
+layout: tool
 title: "Travel Carbon Offset Calculator"
-description: "Placeholder content describing the Travel Carbon Offset Calculator MVP."
+description: "Estimate emissions for flights, overland journeys, and stays, then connect them to trusted offset projects."
+function: calcCarbon
 ---
-
-<main>
-  <h1>Travel Carbon Offset Calculator</h1>
-  <p>This calculator will translate flights, overland journeys, and accommodation choices into estimated emissions. The MVP keeps the workflow simple so users can quickly understand their impact.</p>
-  <h2>MVP Notes</h2>
-  <ul>
-    <li>Inputs: transport mode, distance or route, cabin class, and trip frequency.</li>
-    <li>Outputs: CO₂e totals with suggested offset projects and estimated costs.</li>
-    <li>Data sources: Atmosfair API and internal conversion tables.</li>
+<section class="space-y-4">
+  <h2 class="text-2xl font-semibold text-white">Goal</h2>
+  <p>
+    The Travel Carbon Offset Calculator estimates the climate impact of common travel plans. It simplifies CO₂e math and pairs
+    the totals with curated offset ideas that align with Fold &amp; Ride&apos;s sustainability mission.
+  </p>
+</section>
+<section class="grid gap-6 lg:grid-cols-2">
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Inputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Transport mode (flight, train, bus, car, ferry)</li>
+      <li>Distance or route lookup via airport and station codes</li>
+      <li>Cabin class or vehicle efficiency profile</li>
+      <li>Trip frequency or number of travellers</li>
+      <li>Accommodation type with nightly counts</li>
+    </ul>
+  </div>
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Outputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Total emissions in kilograms of CO₂e</li>
+      <li>Category breakdown (transport vs. stay)</li>
+      <li>Suggested offsets with estimated project cost</li>
+      <li>Tips for reduction before offsetting</li>
+      <li>Downloadable summary for personal reporting</li>
+    </ul>
+  </div>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Data &amp; Methodology</h2>
+  <p>
+    Calculations reference Atmosfair and internal conversion tables. MVP copy explains assumptions clearly so travellers know how
+    numbers were produced before we automate the API calls.
+  </p>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">What&apos;s Next</h2>
+  <ul class="list-disc space-y-2 pl-5">
+    <li>Live API integrations for flight and route emissions</li>
+    <li>Dynamic charts that show impact by category</li>
+    <li>Offset marketplace with partner verification badges</li>
   </ul>
-  <p>Once the backend service is in place, this page will render dynamic charts and calls-to-action that help travellers act on the results.</p>
-</main>
+</section>

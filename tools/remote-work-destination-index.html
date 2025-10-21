@@ -1,17 +1,50 @@
 ---
-layout: default
+layout: tool
 title: "Remote Work Destination Index"
-description: "Placeholder content describing the Remote Work Destination Index MVP."
+description: "Rank potential bases by climate, community, and connectivity before choosing your next city."
+function: fetchDestinations
 ---
-
-<main>
-  <h1>Remote Work Destination Index</h1>
-  <p>The destination index will highlight cities that balance affordability, connectivity, and wellbeing. The MVP focuses on a sortable list that surfaces headline metrics without overwhelming new users.</p>
-  <h2>MVP Notes</h2>
-  <ul>
-    <li>Inputs: preferred climate, budget range, community size, and visa flexibility.</li>
-    <li>Outputs: ranked table or cards with internet speed, coworking density, safety, and cultural highlights.</li>
-    <li>Data sources: blended dataset from internal research and trusted public APIs.</li>
+<section class="space-y-4">
+  <h2 class="text-2xl font-semibold text-white">Overview</h2>
+  <p>
+    The Remote Work Destination Index blends quality-of-life signals with digital nomad essentials. It helps travellers find
+    cities that balance affordability with community, safety, and fast internet.
+  </p>
+</section>
+<section class="grid gap-6 lg:grid-cols-2">
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Filters</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Climate preference (tropical, temperate, seasonal)</li>
+      <li>Average monthly budget range</li>
+      <li>Minimum internet speed and reliability</li>
+      <li>Community vibe (quiet, balanced, vibrant)</li>
+      <li>Visa friendliness and length-of-stay requirements</li>
+    </ul>
+  </div>
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Results</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Ranked shortlist with overall Fold &amp; Ride score</li>
+      <li>Category breakdowns (cost, internet, safety, community)</li>
+      <li>Key stats like coworking density and walkability</li>
+      <li>Seasonal callouts for weather or peak tourist months</li>
+      <li>Suggested itineraries or nearby hubs to pair</li>
+    </ul>
+  </div>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Data Approach</h2>
+  <p>
+    MVP content leans on curated research paired with public datasets. Once live, the index will pull from API partners and user
+    surveys to refresh scores monthly.
+  </p>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Future Ideas</h2>
+  <ul class="list-disc space-y-2 pl-5">
+    <li>Personalized recommendations based on saved trips</li>
+    <li>Map visualizations with filters for coworking and cafes</li>
+    <li>Integrations with local communities and event calendars</li>
   </ul>
-  <p>This placeholder page captures the scope so product and data teams can agree on the signals that matter most before building the live ranking engine.</p>
-</main>
+</section>

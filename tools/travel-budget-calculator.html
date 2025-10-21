@@ -1,17 +1,50 @@
 ---
-layout: default
+layout: tool
 title: "Travel Budget Calculator"
-description: "Placeholder content describing the Travel Budget Calculator MVP."
+description: "Estimate baseline trip budgets by region, duration, and lifestyle so travellers can plan with confidence."
+function: calcBudget
 ---
-
-<main>
-  <h1>Travel Budget Calculator</h1>
-  <p>This page outlines the target flow for a calculator that estimates overall trip costs. The MVP will accept location, trip length, traveller count, and lifestyle inputs before returning a line-item breakdown.</p>
-  <h2>MVP Notes</h2>
-  <ul>
-    <li>Inputs: destination, currency preference, trip duration, accommodation style.</li>
-    <li>Outputs: lodging, food, transport, workspace, and buffer estimates.</li>
-    <li>Data sources: exchangerate.host and baseline cost tables maintained in the project repository.</li>
+<section class="space-y-4">
+  <h2 class="text-2xl font-semibold text-white">What the MVP Delivers</h2>
+  <p>
+    The Travel Budget Calculator helps nomads sketch a realistic cost outline before they book. It combines core trip variables
+    with lifestyle preferences so travellers understand how far their money will go in a new city.
+  </p>
+</section>
+<section class="grid gap-6 lg:grid-cols-2">
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Key Inputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Destination region or city</li>
+      <li>Trip length in weeks or months</li>
+      <li>Preferred accommodation style and nightly rate band</li>
+      <li>Daily lifestyle slider (frugal, balanced, premium)</li>
+      <li>Team size or solo travel toggle</li>
+    </ul>
+  </div>
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Projected Outputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Total projected spend with a monthly roll-up</li>
+      <li>Breakdown of housing, workspace, transit, food, and lifestyle categories</li>
+      <li>Currency conversion into the traveller&apos;s home currency</li>
+      <li>Suggested savings buffer for emergencies</li>
+      <li>Downloadable summary for sharing with travel companions</li>
+    </ul>
+  </div>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Why It Matters</h2>
+  <p>
+    Planning long-term travel often leaves nomads guessing at monthly costs. This calculator anchors the conversation with vetted
+    data sources so budgeting feels intentional rather than reactive.
+  </p>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Next Iterations</h2>
+  <ul class="list-disc space-y-2 pl-5">
+    <li>Layer in dynamic price pulls from Numbeo and partner APIs</li>
+    <li>Introduce scenario comparisons for two destinations side-by-side</li>
+    <li>Offer export to Google Sheets and a sharable public link</li>
   </ul>
-  <p>Engineers can use this scaffold to connect the Google Cloud Function once real data endpoints are ready.</p>
-</main>
+</section>

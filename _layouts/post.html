@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<section class="bg-slate-950 py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <header class="mb-10 space-y-3">
+      <p class="text-sm uppercase tracking-[0.3em] text-[#0D9488]">{{ page.kicker | default: 'Field Notes' }}</p>
+      <h1 class="text-4xl font-semibold text-white">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="max-w-2xl text-lg text-slate-300">{{ page.description }}</p>
+      {% endif %}
+      <p class="text-xs uppercase tracking-[0.35em] text-slate-500">{{ page.date | date: "%B %d, %Y" }}</p>
+    </header>
+    <article class="rounded-3xl border border-slate-800 bg-slate-950/70 p-8 shadow-2xl shadow-slate-950/40 sm:p-10">
+      <div class="prose prose-slate prose-invert max-w-none">
+        {{ content }}
+      </div>
+    </article>
+  </div>
+</section>
+{% include newsletter.html %}

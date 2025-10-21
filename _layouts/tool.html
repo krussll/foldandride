@@ -4,15 +4,22 @@ layout: default
 <section class="bg-slate-950 py-16">
   <div class="mx-auto max-w-5xl px-6">
     <div class="mb-10 space-y-4">
-      <p class="text-sm uppercase tracking-[0.3em] text-sky-300">Tool</p>
+      <p class="text-sm uppercase tracking-[0.3em] text-[#0D9488]">Tool</p>
       <h1 class="text-4xl font-semibold text-white">{{ page.title | default: page.hero_title }}</h1>
       {% if page.description %}
       <p class="max-w-2xl text-lg text-slate-300">{{ page.description }}</p>
       {% endif %}
     </div>
-    <div class="rounded-3xl border border-slate-900 bg-slate-950/70 p-8 shadow-lg shadow-slate-950/30">
-      {{ content }}
-      <p class="mt-6 text-sm text-slate-400">Hook up the related Cloud Function (`{{ page.function | default: 'calcBudget' }}`) when ready to make this interactive.</p>
+    <div class="rounded-3xl border border-slate-800 bg-slate-950/70 p-8 shadow-2xl shadow-slate-950/40 sm:p-10">
+      <div class="space-y-10 text-slate-300">
+        {{ content }}
+      </div>
+      <div class="mt-10 rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+        <p class="text-xs uppercase tracking-[0.35em] text-slate-500">Integration Note</p>
+        <p class="mt-2 text-sm text-slate-400">
+          Hook up the related Cloud Function (<code class="rounded bg-slate-800 px-2 py-1 text-xs text-slate-200">{{ page.function | default: 'calcBudget' }}</code>) when ready to make this interactive.
+        </p>
+      </div>
     </div>
   </div>
 </section>

@@ -1,17 +1,50 @@
 ---
-layout: default
+layout: tool
 title: "Nomad Visa Finder"
-description: "Placeholder content describing the Nomad Visa Finder MVP."
+description: "Check eligibility snapshots for remote-work visas so you can quickly narrow the best relocation options."
+function: fetchVisa
 ---
-
-<main>
-  <h1>Nomad Visa Finder</h1>
-  <p>This finder introduces a searchable list of destinations that offer remote-work visas. The initial release prioritizes clarity so travellers can quickly evaluate if an opportunity fits their situation.</p>
-  <h2>MVP Notes</h2>
-  <ul>
-    <li>Inputs: nationality, desired region, income threshold, and documentation readiness.</li>
-    <li>Outputs: visa summary cards showing eligibility, costs, processing timelines, and renewal notes.</li>
-    <li>Data sources: curated visa dataset maintained in the repository with manual updates.</li>
+<section class="space-y-4">
+  <h2 class="text-2xl font-semibold text-white">Purpose</h2>
+  <p>
+    Remote workers have dozens of visa options to parse. The Nomad Visa Finder streamlines research with plain-language
+    requirements and action items, letting travellers see where they stand in minutes rather than hours.
+  </p>
+</section>
+<section class="grid gap-6 lg:grid-cols-2">
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Inputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Citizenship and residency status</li>
+      <li>Desired destination or region</li>
+      <li>Annual income band and proof-of-funds documents</li>
+      <li>Remote employer or freelance status</li>
+      <li>Travel timeline and length of stay</li>
+    </ul>
+  </div>
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Outputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>List of matching visa programs with quick eligibility badges</li>
+      <li>Summary of key requirements, fees, and processing times</li>
+      <li>Link-out to official government or consulate sources</li>
+      <li>Checklist of documents to gather before applying</li>
+      <li>Alerts for limited-time pilot programs or caps</li>
+    </ul>
+  </div>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Compliance Considerations</h2>
+  <p>
+    Content references official immigration portals and will include disclaimers that regulations change quickly. The backend
+    service will refresh data weekly to keep guidance accurate.
+  </p>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Future Enhancements</h2>
+  <ul class="list-disc space-y-2 pl-5">
+    <li>Localization of guidance for tax prep and mandatory insurance</li>
+    <li>Save-and-track feature to monitor status updates</li>
+    <li>Integration with partner legal teams for fast consultations</li>
   </ul>
-  <p>Future iterations will add bookmarking and save-for-later features, but the MVP focuses on surfacing accurate information first.</p>
-</main>
+</section>
