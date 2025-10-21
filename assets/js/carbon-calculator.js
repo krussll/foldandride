@@ -23,6 +23,54 @@ const EMISSION_FACTORS = {
   },
 };
 
+const OFFSET_PROJECTS = [
+  {
+    provider: 'Gold Standard Marketplace',
+    projectType: 'Clean cookstoves & community energy',
+    priceRangePerTonne: {
+      currency: 'USD',
+      min: 18,
+      max: 28,
+    },
+    url: 'https://marketplace.goldstandard.org/',
+    summary:
+      'Supports cleaner cooking technologies that cut fuel use, improve indoor air, and reduce deforestation.',
+  },
+  {
+    provider: 'Cool Effect',
+    projectType: 'Forestry & avoided deforestation',
+    priceRangePerTonne: {
+      currency: 'USD',
+      min: 15,
+      max: 24,
+    },
+    url: 'https://www.cooleffect.org/',
+    summary: 'Protects high-biodiversity forests while funding local stewardship and monitoring.',
+  },
+  {
+    provider: 'Terrapass',
+    projectType: 'Renewable energy & methane capture',
+    priceRangePerTonne: {
+      currency: 'USD',
+      min: 13,
+      max: 22,
+    },
+    url: 'https://www.terrapass.com/',
+    summary: 'Bundles wind, solar, and landfill gas projects that displace fossil fuel generation.',
+  },
+  {
+    provider: 'Ecologi',
+    projectType: 'Reforestation & carbon removal',
+    priceRangePerTonne: {
+      currency: 'USD',
+      min: 11,
+      max: 19,
+    },
+    url: 'https://ecologi.com/',
+    summary: 'Combines global tree planting with verified carbon removal for longer-term impact.',
+  },
+];
+
 const RETURN_TRIP_MULTIPLIERS = {
   'one-way': 1,
   return: 2,
@@ -309,6 +357,100 @@ function titleCase(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
+function formatTonnes(value) {
+  const safeValue = Number.isFinite(value) ? value : 0;
+  const digits = safeValue >= 10 ? 1 : 2;
+  return `${formatNumber(safeValue, { maximumFractionDigits: digits, minimumFractionDigits: safeValue >= 1 ? 1 : 2 })} t CO₂e`;
+}
+
+function formatCurrency(value, currency = 'USD') {
+  if (!Number.isFinite(value)) return null;
+  const formatter = new Intl.NumberFormat(undefined, {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: value >= 100 ? 0 : 2,
+  });
+  return formatter.format(value);
+}
+
+function formatPriceRange(range, tonnes) {
+  if (!range) return '';
+  const { min, max, currency = 'USD' } = range;
+  if (!Number.isFinite(min) && !Number.isFinite(max)) {
+    return '';
+  }
+
+  const multiplier = Number.isFinite(tonnes) && tonnes > 0 ? tonnes : 1;
+  const minCost = Number.isFinite(min) ? min * multiplier : null;
+  const maxCost = Number.isFinite(max) ? max * multiplier : null;
+
+  if (minCost !== null && maxCost !== null) {
+    return `${formatCurrency(minCost, currency)} – ${formatCurrency(maxCost, currency)}`;
+  }
+  if (minCost !== null) {
+    return `From ${formatCurrency(minCost, currency)}`;
+  }
+  if (maxCost !== null) {
+    return `Up to ${formatCurrency(maxCost, currency)}`;
+  }
+  return '';
+}
+
+function calculateRecommendedTonnes(totalEmissionsKg) {
+  if (!Number.isFinite(totalEmissionsKg) || totalEmissionsKg <= 0) {
+    return 0;
+  }
+  const tonnes = totalEmissionsKg / 1000;
+  if (tonnes <= 0) return 0;
+  const rounded = Math.ceil(tonnes * 10) / 10;
+  return Number.isFinite(rounded) && rounded > 0 ? rounded : tonnes;
+}
+
+function renderOffsetSuggestions(container, totalEmissionsKg, projects = OFFSET_PROJECTS) {
+  if (!container) return;
+
+  const validProjects = Array.isArray(projects)
+    ? projects.filter((project) => project && project.provider && project.url)
+    : [];
+
+  const recommendedTonnes = calculateRecommendedTonnes(totalEmissionsKg);
+
+  if (!validProjects.length || recommendedTonnes <= 0) {
+    container.innerHTML =
+      '<p class="rounded-lg border border-dashed border-slate-300 bg-white/70 p-4 text-sm text-slate-600">Calculate a trip to unlock personalised offset recommendations matched to your emissions.</p>';
+    return;
+  }
+
+  const actualTonnes = totalEmissionsKg / 1000;
+  const projectsMarkup = validProjects
+    .map((project) => {
+      const priceText = formatPriceRange(project.priceRangePerTonne, recommendedTonnes);
+      const summaryText = project.summary ? `<p class="text-xs text-slate-500">${project.summary}</p>` : '';
+      const projectType = project.projectType ? `<p class="text-xs font-medium uppercase tracking-wide text-slate-500">${project.projectType}</p>` : '';
+      const coverageText = `Covers ${formatTonnes(recommendedTonnes)} for your ${formatTonnes(actualTonnes)} trip`;
+
+      return `
+        <article class="flex flex-col justify-between gap-3 rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm transition hover:border-[#0D9488] hover:shadow-md">
+          <div class="space-y-2">
+            ${projectType}
+            <h3 class="text-base font-semibold text-slate-900">${project.provider}</h3>
+            <p class="text-sm text-slate-600">${coverageText}</p>
+            ${summaryText}
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+            <p class="text-sm font-medium text-slate-700">${priceText || 'See live pricing per tonne'}</p>
+            <a class="inline-flex items-center justify-center rounded-full bg-[#0D9488] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0fb7a4] focus:outline-none focus:ring focus:ring-[#0D9488]/40" href="${project.url}" target="_blank" rel="noopener">
+              Offset ${formatNumber(recommendedTonnes, { maximumFractionDigits: recommendedTonnes >= 1 ? 1 : 2 })} t
+            </a>
+          </div>
+        </article>
+      `;
+    })
+    .join('');
+
+  container.innerHTML = projectsMarkup;
+}
+
 function renderBreakdown(container, breakdown = { legs: [] }) {
   if (!container) return;
 
@@ -391,13 +533,17 @@ function handleFormSubmit(event) {
 
   const presetRoutes = extractPresetRoutes(form);
   const parsed = parseCalculatorForm(form, presetRoutes);
+  const offsetContainer = document.getElementById('offset-suggestions');
+
   if (!parsed.legs.length) {
     renderBreakdown(resultsContainer, { legs: [] });
+    renderOffsetSuggestions(offsetContainer, 0);
     return;
   }
 
   const breakdown = calculateTripBreakdown(parsed, { presetRoutes });
   renderBreakdown(resultsContainer, breakdown);
+  renderOffsetSuggestions(offsetContainer, breakdown.totalEmissionsKg);
 }
 
 if (typeof document !== 'undefined') {
@@ -411,10 +557,16 @@ if (typeof document !== 'undefined') {
     }
 
     form.addEventListener('submit', handleFormSubmit);
+
+    const offsetContainer = document.getElementById('offset-suggestions');
+    if (offsetContainer) {
+      renderOffsetSuggestions(offsetContainer, 0);
+    }
   });
 }
 
 export {
   EMISSION_FACTORS,
+  OFFSET_PROJECTS,
 };
 
