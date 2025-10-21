@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<section class="bg-slate-950 py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mb-10 space-y-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-sky-300">Tool</p>
+      <h1 class="text-4xl font-semibold text-white">{{ page.title | default: page.hero_title }}</h1>
+      {% if page.description %}
+      <p class="max-w-2xl text-lg text-slate-300">{{ page.description }}</p>
+      {% endif %}
+    </div>
+    <div class="rounded-3xl border border-slate-900 bg-slate-950/70 p-8 shadow-lg shadow-slate-950/30">
+      {{ content }}
+      <p class="mt-6 text-sm text-slate-400">Hook up the related Cloud Function (`{{ page.function | default: 'calcBudget' }}`) when ready to make this interactive.</p>
+    </div>
+  </div>
+</section>
+{% include newsletter.html %}
