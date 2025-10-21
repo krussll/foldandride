@@ -1,0 +1,45 @@
+title: "Fold & Ride"
+description: "Digital nomad tools, guides, and inspiration for life on the move."
+url: ""
+baseurl: ""
+email: hello@foldandride.com
+permalink: pretty
+markdown: kramdown
+theme: null
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+collections:
+  tools:
+    output: true
+    permalink: /tools/:name/
+include:
+  - _pages
+exclude:
+  - docs/
+  - README.md
+  - vendor
+  - .bundle
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "guide"
+      description: "Insights for the modern nomad."
+  - scope:
+      path: ""
+      type: "tools"
+    values:
+      layout: "tool"
+      hero_title: "Nomad Toolkit"
+      description: "Interactive helpers for planning your next adventure."
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+feed:
+  path: feed.xml
+social:
+  twitter: foldandride
+  github: foldandride
