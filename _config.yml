@@ -3,6 +3,7 @@ description: "Digital nomad tools, guides, and inspiration for life on the move.
 url: "https://krussll.github.io/foldandride"
 baseurl: ""
 email: hello@foldandride.com
+logo: /assets/images/og-default.jpg
 permalink: pretty
 markdown: kramdown
 theme: null
