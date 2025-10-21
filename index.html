@@ -10,8 +10,8 @@ description: "Launch your next remote adventure with tools, guides, and stories 
       <h1 class="text-4xl font-semibold text-white sm:text-5xl">Plan smarter journeys with Fold &amp; Ride</h1>
       <p class="text-lg text-slate-300">A calm, responsive starter site showcasing the Fold &amp; Ride experience with Tailwind-powered styling and Jekyll content blocks.</p>
       <div class="flex flex-col gap-3 sm:flex-row">
-        <a class="inline-flex items-center justify-center rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-300" href="{{ '/tools/' | relative_url }}">Explore the toolkit</a>
-        <a class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-sky-400 hover:text-sky-300" href="{{ '/guides/' | relative_url }}">Read the guides</a>
+        <a class="inline-flex items-center justify-center rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-300" href="{{ '/tools/' | absolute_url }}">Explore the toolkit</a>
+        <a class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-sky-400 hover:text-sky-300" href="{{ '/guides/' | absolute_url }}">Read the guides</a>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@ description: "Launch your next remote adventure with tools, guides, and stories 
       {% for post in site.posts limit:3 %}
       <article class="flex h-full flex-col justify-between rounded-3xl border border-slate-900 bg-slate-950/70 p-6 shadow-lg shadow-slate-950/30 transition hover:border-sky-400/60">
         <div class="space-y-3">
-          <h3 class="text-xl font-semibold text-white"><a class="hover:text-sky-300" href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <h3 class="text-xl font-semibold text-white"><a class="hover:text-sky-300" href="{{ post.url | absolute_url }}">{{ post.title }}</a></h3>
           <p class="text-sm text-slate-300">{{ post.excerpt | strip_html | truncate: 140 }}</p>
         </div>
         <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{{ post.date | date: "%B %d, %Y" }}</p>
