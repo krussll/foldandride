@@ -4,17 +4,27 @@ title: "Travel Carbon Offset Calculator"
 description: "Estimate emissions for flights, overland journeys, and stays, then connect them to trusted offset projects."
 function: calcCarbon
 ---
-<section class="space-y-10">
-  <header class="space-y-4 text-slate-800">
-    <p class="text-sm uppercase tracking-wide text-[#0D9488]">Carbon Planning</p>
-    <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">Estimate, understand, and offset your travel emissions</h1>
-    <p class="max-w-3xl text-base text-slate-600">
-      Enter your journey details below to see the projected carbon impact of flights, rail, and other transport options. The
-      calculator highlights the biggest emission drivers and offers vetted offset suggestions so you can balance every trip.
-    </p>
-  </header>
+<section class="space-y-12">
+  <div class="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
+    <header class="space-y-5 text-slate-800">
+      <p class="text-sm uppercase tracking-wide text-[#0D9488]">Carbon Planning</p>
+      <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">
+        Estimate, understand, and offset your travel emissions
+      </h1>
+      <p class="text-base text-slate-600">
+        Enter your journey details to instantly project the carbon impact of your next flight, rail adventure, or road trip.
+        The calculator spotlights the biggest emission drivers and connects you with curated offset ideas.
+      </p>
+      <ul class="space-y-2 text-sm text-slate-600">
+        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#0D9488]"></span>Works with flights,
+          rail, bus, car, and ferry journeys.</li>
+        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#0D9488]"></span>Swap between
+          auto-calculated distances or your own custom mileage.</li>
+        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#0D9488]"></span>See per-passenger
+          totals and quick-win reduction tips.</li>
+      </ul>
+    </header>
 
-  <section class="grid gap-8 xl:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
     <form
       id="carbon-calculator-form"
       data-carbon-calculator
@@ -22,8 +32,8 @@ function: calcCarbon
       aria-describedby="carbon-calculator-helper"
     >
       <div id="carbon-calculator-helper" class="text-sm text-slate-600">
-        Provide as much detail as you know. The calculator supports single trips or recurring journeys and can estimate
-        distances from common origin and destination pairs.
+        Provide as much detail as you know. The calculator supports single trips and can estimate distances from common
+        origin and destination pairs.
       </div>
 
       <div class="space-y-2">
@@ -87,41 +97,6 @@ function: calcCarbon
         <p class="text-xs text-slate-500">If provided, this value overrides the route lookup.</p>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div class="space-y-2">
-          <label for="cabin-class" class="block text-sm font-medium text-slate-800">Cabin or vehicle class</label>
-          <select
-            id="cabin-class"
-            name="cabinClass"
-            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-          >
-            <option value="" disabled selected>Select a class</option>
-            <option value="economy">Economy</option>
-            <option value="premium">Premium Economy</option>
-            <option value="business">Business</option>
-            <option value="first">First</option>
-            <option value="electric">Electric vehicle</option>
-            <option value="hybrid">Hybrid vehicle</option>
-            <option value="diesel">Diesel vehicle</option>
-          </select>
-          <p class="text-xs text-slate-500">Aircraft cabin or vehicle efficiency setting.</p>
-        </div>
-        <div class="space-y-2">
-          <label for="frequency" class="block text-sm font-medium text-slate-800">Trip frequency</label>
-          <input
-            id="frequency"
-            name="frequency"
-            type="number"
-            min="1"
-            step="1"
-            value="1"
-            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-            aria-describedby="frequency-helper"
-          />
-          <p id="frequency-helper" class="text-xs text-slate-500">Number of times you complete this trip per year.</p>
-        </div>
-      </div>
-
       <div class="space-y-2">
         <label for="passengers" class="block text-sm font-medium text-slate-800">Passengers</label>
         <input
@@ -147,28 +122,28 @@ function: calcCarbon
         <p class="text-xs text-slate-500">Results update instantly when new data is available.</p>
       </div>
     </form>
+  </div>
 
-    <div class="space-y-6">
-      <section class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70">
-        <h2 class="text-lg font-semibold text-slate-900">Emission summary</h2>
-        <p class="text-sm text-slate-600">Your total carbon impact for this journey appears below.</p>
-        <div id="carbon-results" class="mt-4 space-y-3 text-sm text-slate-700" role="status" aria-live="polite">
-          <p class="text-slate-500">Run a calculation to see totals, per-passenger emissions, and category breakdowns.</p>
-        </div>
-      </section>
+  <section class="grid gap-6 lg:grid-cols-2">
+    <section class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70">
+      <h2 class="text-lg font-semibold text-slate-900">Emission summary</h2>
+      <p class="text-sm text-slate-600">Your total carbon impact for this journey appears below.</p>
+      <div id="carbon-results" class="mt-4 space-y-3 text-sm text-slate-700" role="status" aria-live="polite">
+        <p class="text-slate-500">Run a calculation to see totals, per-passenger emissions, and category breakdowns.</p>
+      </div>
+    </section>
 
-      <section class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70">
-        <h2 class="text-lg font-semibold text-slate-900">Offset ideas</h2>
-        <p class="text-sm text-slate-600">We recommend balancing emissions with projects that match your values.</p>
-        <p class="text-sm text-slate-600">
-          Offsets work best alongside smart reduction moves like choosing efficient routes and greener stays. Dive deeper in our
-          <a class="font-medium text-[#0D9488] underline decoration-[#0D9488]/40 underline-offset-2 hover:text-[#0fb7a4]" href="{{ '/guides/eco-travel-offsetting/' | absolute_url }}">eco-travel offsetting guide</a>.
-        </p>
-        <div id="offset-suggestions" class="mt-4 space-y-3 text-sm text-slate-700">
-          <p class="text-slate-500">Calculated offsets will populate with vetted partner projects and pricing.</p>
-        </div>
-      </section>
-    </div>
+    <section class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70">
+      <h2 class="text-lg font-semibold text-slate-900">Offset ideas</h2>
+      <p class="text-sm text-slate-600">We recommend balancing emissions with projects that match your values.</p>
+      <p class="text-sm text-slate-600">
+        Offsets work best alongside smart reduction moves like choosing efficient routes and greener stays. Dive deeper in our
+        <a class="font-medium text-[#0D9488] underline decoration-[#0D9488]/40 underline-offset-2 hover:text-[#0fb7a4]" href="{{ '/guides/eco-travel-offsetting/' | absolute_url }}">eco-travel offsetting guide</a>.
+      </p>
+      <div id="offset-suggestions" class="mt-4 space-y-3 text-sm text-slate-700">
+        <p class="text-slate-500">Calculated offsets will populate with vetted partner projects and pricing.</p>
+      </div>
+    </section>
   </section>
 </section>
 
