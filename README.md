@@ -30,6 +30,7 @@ A GitHub Pages–ready Jekyll site that previews the Fold & Ride digital nomad t
 - `_includes/` houses shared UI such as the header, footer, SEO tags, and newsletter embed.
 - `index.html`, `tools/`, `blog/`, and `about.md` provide example content that mirrors the MVP technical spec in `docs/MVP_TECH_SPEC.md`.
 - `_posts/` contains a sample Lisbon field notes article to confirm the blog pipeline.
+- `tools/travel-carbon-offset-calculator.html` pairs with the new calculator reference in `docs/carbon-calculator.md`, so maintainers can cross-check inputs, data sources, and formulas at a glance.
 
 When you are ready to implement the real calculators, follow the spec in `docs/MVP_TECH_SPEC.md` to connect the front-end sections to Google Cloud Functions.
 
