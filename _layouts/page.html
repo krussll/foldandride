@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<section class="py-16 text-slate-900">
+  <div class="mx-auto max-w-4xl px-6">
+    <header class="mb-12 space-y-4">
+      {% if page.kicker %}
+      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#0D9488]">{{ page.kicker }}</p>
+      {% endif %}
+      <h1 class="font-heading text-4xl font-semibold text-slate-900">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="text-base text-slate-600 sm:text-lg">{{ page.description }}</p>
+      {% endif %}
+    </header>
+    <div class="prose prose-slate max-w-none">
+      {{ content }}
+    </div>
+  </div>
+</section>

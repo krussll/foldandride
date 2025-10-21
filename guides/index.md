@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: "Guides Library"
 description: "Overview of Fold & Ride travel guides planned for the MVP."
 ---
-
-# Guides Library
 
 The guides catalogue will host long-form resources for remote workers. These placeholders highlight the themes that will launch with the MVP.
 
