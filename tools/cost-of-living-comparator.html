@@ -1,17 +1,50 @@
 ---
-layout: default
+layout: tool
 title: "Cost of Living Comparator"
-description: "Placeholder content describing the Cost of Living Comparator MVP."
+description: "Contrast everyday expenses across destinations to spot lifestyle trade-offs before relocating."
+function: compareCosts
 ---
-
-<main>
-  <h1>Cost of Living Comparator</h1>
-  <p>The comparator will help nomads review how everyday expenses stack up between two locations. The MVP experience will keep inputs lightweight so testing can focus on accuracy and clarity.</p>
-  <h2>MVP Notes</h2>
-  <ul>
-    <li>Inputs: origin city, destination city, lifestyle presets, and currency.</li>
-    <li>Outputs: monthly totals grouped by housing, groceries, dining out, and workspace fees.</li>
-    <li>Data sources: Numbeo for baseline figures with manual overrides where gaps exist.</li>
+<section class="space-y-4">
+  <h2 class="text-2xl font-semibold text-white">Snapshot</h2>
+  <p>
+    The Cost of Living Comparator surfaces key spending categories so nomads can weigh the realities of moving from one city to
+    another. It is built for fast side-by-side checks that clarify how rent, food, and workspace costs stack up.
+  </p>
+</section>
+<section class="grid gap-6 lg:grid-cols-2">
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Inputs</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Origin and destination cities</li>
+      <li>Team size or household composition</li>
+      <li>Monthly rent or coworking budget caps</li>
+      <li>Lifestyle emphasis (budget, balanced, premium)</li>
+      <li>Preferred currency for the output</li>
+    </ul>
+  </div>
+  <div class="space-y-3 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6">
+    <h3 class="text-lg font-semibold text-white">Insights</h3>
+    <ul class="list-disc space-y-2 pl-5">
+      <li>Headline monthly totals for both cities</li>
+      <li>Percentage difference by category with quick callouts</li>
+      <li>Suggested savings buffer for the pricier city</li>
+      <li>Key local notes (visa limits, taxes, or utility costs)</li>
+      <li>Downloadable comparison sheet for team planning</li>
+    </ul>
+  </div>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Research Backing</h2>
+  <p>
+    Data will pull from Numbeo, Nomad List, and partner surveys. MVP content leans on pre-curated tables so we can ship quickly
+    while backend integrations take shape.
+  </p>
+</section>
+<section class="space-y-3">
+  <h2 class="text-2xl font-semibold text-white">Roadmap Highlights</h2>
+  <ul class="list-disc space-y-2 pl-5">
+    <li>Layer in seasonal adjustments for heating, cooling, or tourist spikes</li>
+    <li>Introduce charts showing cost deltas over time</li>
+    <li>Allow saving favourite matchups to a logged-in dashboard</li>
   </ul>
-  <p>During early QA, this content block will be replaced with a live comparison table fed by the backend service.</p>
-</main>
+</section>
