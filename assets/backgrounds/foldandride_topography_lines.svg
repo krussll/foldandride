@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1792" height="1024" viewBox="0 0 1792 1024">
+  <defs>
+    <style>
+      .line { fill: none; stroke: #0D9488; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Transparent background -->
+  <rect x="0" y="0" width="1792" height="1024" fill="none"/>
+
+  <!-- Topography / contour lines -->
+  <path class="line" d="M40,200 C260,120 520,180 740,140 C1000,90 1160,190 1400,160 C1590,140 1700,120 1750,110" opacity="0.85"/>
+  <path class="line" d="M30,360 C260,300 540,360 760,330 C1040,290 1240,380 1460,350 C1650,330 1720,320 1760,312" opacity="0.75"/>
+  <path class="line" d="M20,540 C240,470 520,520 720,500 C980,476 1210,560 1450,540 C1650,525 1720,520 1770,512" opacity="0.65"/>
+  <path class="line" d="M10,720 C220,650 520,700 740,690 C980,680 1220,740 1440,720 C1620,705 1710,700 1765,696" opacity="0.55"/>
+  <path class="line" d="M0,900 C210,850 520,880 760,870 C1000,860 1220,920 1440,900 C1620,885 1710,880 1792,872" opacity="0.45"/>
+</svg>
