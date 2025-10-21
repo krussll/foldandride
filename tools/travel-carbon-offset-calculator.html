@@ -4,33 +4,33 @@ title: "Travel Carbon Offset Calculator"
 description: "Estimate emissions for flights, overland journeys, and stays, then connect them to trusted offset projects."
 function: calcCarbon
 ---
-<section class="space-y-8">
-  <header class="space-y-4 text-white">
-    <p class="text-sm uppercase tracking-wide text-sky-300">Carbon Planning</p>
-    <h1 class="text-3xl font-bold sm:text-4xl">Estimate, understand, and offset your travel emissions</h1>
-    <p class="max-w-3xl text-base text-slate-200">
+<section class="space-y-10">
+  <header class="space-y-4 text-slate-800">
+    <p class="text-sm uppercase tracking-wide text-[#0D9488]">Carbon Planning</p>
+    <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">Estimate, understand, and offset your travel emissions</h1>
+    <p class="max-w-3xl text-base text-slate-600">
       Enter your journey details below to see the projected carbon impact of flights, rail, and other transport options. The
       calculator highlights the biggest emission drivers and offers vetted offset suggestions so you can balance every trip.
     </p>
   </header>
 
-  <section class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+  <section class="grid gap-8 lg:grid-cols-[1.12fr_0.88fr]">
     <form
       id="carbon-calculator-form"
-      class="space-y-6 rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6 shadow-xl shadow-black/20"
+      class="space-y-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70"
       aria-describedby="carbon-calculator-helper"
     >
-      <div id="carbon-calculator-helper" class="text-sm text-slate-300">
+      <div id="carbon-calculator-helper" class="text-sm text-slate-600">
         Provide as much detail as you know. The calculator supports single trips or recurring journeys and can estimate
         distances from common origin and destination pairs.
       </div>
 
       <div class="space-y-2">
-        <label for="travel-mode" class="block text-sm font-medium text-white">Mode of travel</label>
+        <label for="travel-mode" class="block text-sm font-medium text-slate-800">Mode of travel</label>
         <select
           id="travel-mode"
           name="travelMode"
-          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+          class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
           required
         >
           <option value="" disabled selected>Select a transport mode</option>
@@ -40,40 +40,40 @@ function: calcCarbon
           <option value="car">Car</option>
           <option value="ferry">Ferry</option>
         </select>
-        <p class="text-xs text-slate-400">Different emission factors are applied for each mode.</p>
+        <p class="text-xs text-slate-500">Different emission factors are applied for each mode.</p>
       </div>
 
       <div class="grid gap-4 sm:grid-cols-2">
         <div class="space-y-2">
-          <label for="origin" class="block text-sm font-medium text-white">Origin</label>
+          <label for="origin" class="block text-sm font-medium text-slate-800">Origin</label>
           <input
             id="origin"
             name="origin"
             type="text"
             placeholder="City, station, or airport"
-            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
             aria-describedby="origin-helper"
           />
-          <p id="origin-helper" class="text-xs text-slate-400">Use IATA, station codes, or city names for best accuracy.</p>
+          <p id="origin-helper" class="text-xs text-slate-500">Use IATA, station codes, or city names for best accuracy.</p>
         </div>
         <div class="space-y-2">
-          <label for="destination" class="block text-sm font-medium text-white">Destination</label>
+          <label for="destination" class="block text-sm font-medium text-slate-800">Destination</label>
           <input
             id="destination"
             name="destination"
             type="text"
             placeholder="Arrival city or terminal"
-            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
             aria-describedby="destination-helper"
           />
-          <p id="destination-helper" class="text-xs text-slate-400">
+          <p id="destination-helper" class="text-xs text-slate-500">
             Leave origin and destination blank to enter a custom distance below.
           </p>
         </div>
       </div>
 
       <div class="space-y-2">
-        <label for="distance" class="block text-sm font-medium text-white">Distance (optional)</label>
+        <label for="distance" class="block text-sm font-medium text-slate-800">Distance (optional)</label>
         <input
           id="distance"
           name="distance"
@@ -81,18 +81,18 @@ function: calcCarbon
           min="0"
           step="1"
           placeholder="Enter kilometers"
-          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+          class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
         />
-        <p class="text-xs text-slate-400">If provided, this value overrides the route lookup.</p>
+        <p class="text-xs text-slate-500">If provided, this value overrides the route lookup.</p>
       </div>
 
       <div class="grid gap-4 sm:grid-cols-2">
         <div class="space-y-2">
-          <label for="cabin-class" class="block text-sm font-medium text-white">Cabin or vehicle class</label>
+          <label for="cabin-class" class="block text-sm font-medium text-slate-800">Cabin or vehicle class</label>
           <select
             id="cabin-class"
             name="cabinClass"
-            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
           >
             <option value="" disabled selected>Select a class</option>
             <option value="economy">Economy</option>
@@ -103,10 +103,10 @@ function: calcCarbon
             <option value="hybrid">Hybrid vehicle</option>
             <option value="diesel">Diesel vehicle</option>
           </select>
-          <p class="text-xs text-slate-400">Aircraft cabin or vehicle efficiency setting.</p>
+          <p class="text-xs text-slate-500">Aircraft cabin or vehicle efficiency setting.</p>
         </div>
         <div class="space-y-2">
-          <label for="frequency" class="block text-sm font-medium text-white">Trip frequency</label>
+          <label for="frequency" class="block text-sm font-medium text-slate-800">Trip frequency</label>
           <input
             id="frequency"
             name="frequency"
@@ -114,15 +114,15 @@ function: calcCarbon
             min="1"
             step="1"
             value="1"
-            class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
             aria-describedby="frequency-helper"
           />
-          <p id="frequency-helper" class="text-xs text-slate-400">Number of times you complete this trip per year.</p>
+          <p id="frequency-helper" class="text-xs text-slate-500">Number of times you complete this trip per year.</p>
         </div>
       </div>
 
       <div class="space-y-2">
-        <label for="passengers" class="block text-sm font-medium text-white">Passengers</label>
+        <label for="passengers" class="block text-sm font-medium text-slate-800">Passengers</label>
         <input
           id="passengers"
           name="passengers"
@@ -130,37 +130,37 @@ function: calcCarbon
           min="1"
           step="1"
           value="1"
-          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-white focus:border-sky-400 focus:outline-none focus:ring focus:ring-sky-500/30"
+          class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
           aria-describedby="passengers-helper"
         />
-        <p id="passengers-helper" class="text-xs text-slate-400">Include all travellers you are offsetting for.</p>
+        <p id="passengers-helper" class="text-xs text-slate-500">Include all travellers you are offsetting for.</p>
       </div>
 
       <div class="flex flex-wrap items-center gap-3 pt-2">
         <button
           type="submit"
-          class="inline-flex items-center justify-center rounded-full bg-sky-500 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-sky-400 focus:outline-none focus:ring focus:ring-sky-500/40"
+          class="inline-flex items-center justify-center rounded-full bg-[#0D9488] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0fb7a4] focus:outline-none focus:ring focus:ring-[#0D9488]/40"
         >
           Calculate emissions
         </button>
-        <p class="text-xs text-slate-400">Results update instantly when new data is available.</p>
+        <p class="text-xs text-slate-500">Results update instantly when new data is available.</p>
       </div>
     </form>
 
     <div class="space-y-6">
-      <section class="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6 shadow-lg shadow-black/20">
-        <h2 class="text-lg font-semibold text-white">Emission summary</h2>
-        <p class="text-sm text-slate-300">Your total carbon impact for this journey appears below.</p>
-        <div id="carbon-results" class="mt-4 space-y-3 text-sm text-slate-200">
-          <p class="text-slate-400">Run a calculation to see totals, per-passenger emissions, and category breakdowns.</p>
+      <section class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70">
+        <h2 class="text-lg font-semibold text-slate-900">Emission summary</h2>
+        <p class="text-sm text-slate-600">Your total carbon impact for this journey appears below.</p>
+        <div id="carbon-results" class="mt-4 space-y-3 text-sm text-slate-700">
+          <p class="text-slate-500">Run a calculation to see totals, per-passenger emissions, and category breakdowns.</p>
         </div>
       </section>
 
-      <section class="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-6 shadow-lg shadow-black/20">
-        <h2 class="text-lg font-semibold text-white">Offset ideas</h2>
-        <p class="text-sm text-slate-300">We recommend balancing emissions with projects that match your values.</p>
-        <div id="offset-suggestions" class="mt-4 space-y-3 text-sm text-slate-200">
-          <p class="text-slate-400">Calculated offsets will populate with vetted partner projects and pricing.</p>
+      <section class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70">
+        <h2 class="text-lg font-semibold text-slate-900">Offset ideas</h2>
+        <p class="text-sm text-slate-600">We recommend balancing emissions with projects that match your values.</p>
+        <div id="offset-suggestions" class="mt-4 space-y-3 text-sm text-slate-700">
+          <p class="text-slate-500">Calculated offsets will populate with vetted partner projects and pricing.</p>
         </div>
       </section>
     </div>
