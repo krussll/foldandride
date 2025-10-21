@@ -1,1 +1,1 @@
-# Agents file
+# AGENTS.md
