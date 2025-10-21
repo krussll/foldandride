@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: "Best Cities for Remote Workers"
 description: "Placeholder outline for the best cities guide."
 ---
-
-# Best Cities for Remote Workers
 
 This article will profile destinations that balance affordability, safety, infrastructure, and culture. The bullet points below summarize the evaluation pillars that will shape the finished piece.
 

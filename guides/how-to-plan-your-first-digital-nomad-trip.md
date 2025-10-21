@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: "How to Plan Your First Digital Nomad Trip"
 description: "Placeholder outline for planning a first digital nomad adventure."
 ---
-
-# How to Plan Your First Digital Nomad Trip
 
 This draft will expand into a step-by-step roadmap covering visas, budgeting, packing, and remote work logistics. For now it summarizes the high-level sections so writers can begin outlining the final article.
 

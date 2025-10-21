@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: "Eco Travel Offsetting"
 description: "Placeholder outline for the eco travel offsetting guide."
 ---
-
-# Eco Travel Offsetting
 
 This guide will walk through mindful ways to balance necessary travel with climate responsibility. The current copy lists the sections we plan to develop into a full article.
 
