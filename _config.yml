@@ -27,6 +27,7 @@ defaults:
     values:
       layout: "guide"
       description: "Insights for the modern nomad."
+      permalink: "/guides/:slug/"
   - scope:
       path: ""
       type: "tools"
