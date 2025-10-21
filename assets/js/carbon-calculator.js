@@ -518,6 +518,25 @@ function renderBreakdown(container, breakdown = { legs: [] }) {
   `;
 }
 
+function scrollResultsIntoView(resultsContainer) {
+  if (!(resultsContainer instanceof HTMLElement)) {
+    return;
+  }
+
+  const scrollTarget = resultsContainer.closest('[id="carbon-results"]') || resultsContainer;
+
+  const schedule =
+    typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function'
+      ? window.requestAnimationFrame.bind(window)
+      : (callback) => callback();
+
+  schedule(() => {
+    if (typeof scrollTarget.scrollIntoView === 'function') {
+      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+}
+
 function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -538,12 +557,14 @@ function handleFormSubmit(event) {
   if (!parsed.legs.length) {
     renderBreakdown(resultsContainer, { legs: [] });
     renderOffsetSuggestions(offsetContainer, 0);
+    scrollResultsIntoView(resultsContainer);
     return;
   }
 
   const breakdown = calculateTripBreakdown(parsed, { presetRoutes });
   renderBreakdown(resultsContainer, breakdown);
   renderOffsetSuggestions(offsetContainer, breakdown.totalEmissionsKg);
+  scrollResultsIntoView(resultsContainer);
 }
 
 if (typeof document !== 'undefined') {
