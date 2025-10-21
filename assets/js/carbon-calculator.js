@@ -556,6 +556,70 @@ if (typeof document !== 'undefined') {
       return;
     }
 
+    const stepper = form.querySelector('[data-carbon-stepper]');
+    if (stepper) {
+      const modeStep = stepper.querySelector('[data-step="mode"]');
+      const detailsStep = stepper.querySelector('[data-step="details"]');
+      const continueButton = stepper.querySelector('[data-step-continue]');
+      const modeSelect = stepper.querySelector('[name="travelMode"]');
+
+      const completionMessage = stepper.querySelector('[data-step-complete-message]');
+
+      const revealDetails = (options = {}) => {
+        if (!detailsStep || !modeStep) {
+          return;
+        }
+
+        if (!modeSelect?.value) {
+          return;
+        }
+
+        if (detailsStep.classList.contains('hidden')) {
+          detailsStep.classList.remove('hidden');
+        }
+        detailsStep.removeAttribute('aria-hidden');
+        modeStep.setAttribute('data-step-complete', 'true');
+        stepper.setAttribute('data-stepper-state', 'details');
+        if (completionMessage && completionMessage.classList.contains('hidden')) {
+          completionMessage.classList.remove('hidden');
+        }
+
+        if (options.focus !== false) {
+          const focusTarget = detailsStep.querySelector('[data-step-focus]');
+          if (focusTarget instanceof HTMLElement) {
+            focusTarget.focus();
+          }
+        }
+      };
+
+      const updateContinueState = () => {
+        if (!continueButton) return;
+        const hasSelection = Boolean(modeSelect?.value);
+        continueButton.disabled = !hasSelection;
+        if (hasSelection && stepper.getAttribute('data-stepper-state') === 'details') {
+          // ensure mode can be re-enabled if the user changed their mind
+          revealDetails({ focus: false });
+        }
+      };
+
+      if (continueButton) {
+        continueButton.addEventListener('click', (event) => {
+          event.preventDefault();
+          revealDetails();
+        });
+      }
+
+      if (modeSelect) {
+        modeSelect.addEventListener('change', () => {
+          updateContinueState();
+        });
+        updateContinueState();
+        if (modeSelect.value) {
+          revealDetails({ focus: false });
+        }
+      }
+    }
+
     form.addEventListener('submit', handleFormSubmit);
 
     const offsetContainer = document.getElementById('offset-suggestions');

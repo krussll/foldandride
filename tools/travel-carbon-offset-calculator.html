@@ -28,98 +28,142 @@ function: calcCarbon
     <form
       id="carbon-calculator-form"
       data-carbon-calculator
-      class="space-y-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70"
+      class="space-y-6"
       aria-describedby="carbon-calculator-helper"
     >
-      <div id="carbon-calculator-helper" class="text-sm text-slate-600">
-        Provide as much detail as you know. The calculator supports single trips and can estimate distances from common
-        origin and destination pairs.
-      </div>
-
-      <div class="space-y-2">
-        <label for="travel-mode" class="block text-sm font-medium text-slate-800">Mode of travel</label>
-        <select
-          id="travel-mode"
-          name="travelMode"
-          class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-          required
-        >
-          <option value="" disabled selected>Select a transport mode</option>
-          <option value="flight">Flight</option>
-          <option value="train">Train</option>
-          <option value="bus">Bus</option>
-          <option value="car">Car</option>
-          <option value="ferry">Ferry</option>
-        </select>
-        <p class="text-xs text-slate-500">Different emission factors are applied for each mode.</p>
-      </div>
-
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div class="space-y-2">
-          <label for="origin" class="block text-sm font-medium text-slate-800">Origin</label>
-          <input
-            id="origin"
-            name="origin"
-            type="text"
-            placeholder="City, station, or airport"
-            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-            aria-describedby="origin-helper"
-          />
-          <p id="origin-helper" class="text-xs text-slate-500">Use IATA, station codes, or city names for best accuracy.</p>
+      <div
+        data-carbon-stepper
+        class="space-y-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-lg shadow-slate-200/70"
+      >
+        <div class="space-y-4" data-step="mode" aria-live="polite">
+          <header class="space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-wide text-[#0D9488]">Step 1</p>
+            <h2 class="text-lg font-semibold text-slate-900">Choose your mode of travel</h2>
+            <p class="text-sm text-slate-600">
+              Start with the biggest driver of emissions. Pick the transport mode you plan to take and we’ll unlock the rest of
+              the journey details.
+            </p>
+          </header>
+          <div class="space-y-2">
+            <label for="travel-mode" class="block text-sm font-medium text-slate-800">Mode of travel</label>
+            <select
+              id="travel-mode"
+              name="travelMode"
+              class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
+              required
+            >
+              <option value="" disabled selected>Select a transport mode</option>
+              <option value="flight">Flight</option>
+              <option value="train">Train</option>
+              <option value="bus">Bus</option>
+              <option value="car">Car</option>
+              <option value="ferry">Ferry</option>
+            </select>
+            <p class="text-xs text-slate-500">Different emission factors are applied for each mode.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              data-step-continue
+              class="inline-flex items-center justify-center rounded-full bg-[#0D9488] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0fb7a4] focus:outline-none focus:ring focus:ring-[#0D9488]/40 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
+            >
+              Continue to trip details
+            </button>
+            <p class="text-xs text-slate-500">You can adjust the mode later if your plans change.</p>
+            <p data-step-complete-message class="hidden text-xs font-medium text-[#0D9488]">
+              Mode selected. Scroll down to refine the rest of your trip.
+            </p>
+          </div>
         </div>
-        <div class="space-y-2">
-          <label for="destination" class="block text-sm font-medium text-slate-800">Destination</label>
-          <input
-            id="destination"
-            name="destination"
-            type="text"
-            placeholder="Arrival city or terminal"
-            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-            aria-describedby="destination-helper"
-          />
-          <p id="destination-helper" class="text-xs text-slate-500">
-            Leave origin and destination blank to enter a custom distance below.
+
+        <div
+          data-step="details"
+          class="hidden space-y-6"
+          aria-hidden="true"
+        >
+          <div class="rounded-xl bg-white/90 p-4 text-sm text-slate-600 shadow-inner">
+            <p class="font-medium text-slate-800">Step 2: Add trip details</p>
+            <p id="carbon-calculator-helper" class="mt-1 text-xs text-slate-500">
+              Provide as much detail as you know. The calculator supports single trips and can estimate distances from common
+              origin and destination pairs.
+            </p>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="space-y-2">
+              <label for="origin" class="block text-sm font-medium text-slate-800">Origin</label>
+              <input
+                id="origin"
+                name="origin"
+                type="text"
+                placeholder="City, station, or airport"
+                class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
+                aria-describedby="origin-helper"
+                data-step-focus
+              />
+              <p id="origin-helper" class="text-xs text-slate-500">Use IATA, station codes, or city names for best accuracy.</p>
+            </div>
+            <div class="space-y-2">
+              <label for="destination" class="block text-sm font-medium text-slate-800">Destination</label>
+              <input
+                id="destination"
+                name="destination"
+                type="text"
+                placeholder="Arrival city or terminal"
+                class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
+                aria-describedby="destination-helper"
+              />
+              <p id="destination-helper" class="text-xs text-slate-500">
+                Leave origin and destination blank to enter a custom distance below.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="distance" class="block text-sm font-medium text-slate-800">Distance (optional)</label>
+            <input
+              id="distance"
+              name="distance"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="Enter kilometers"
+              class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
+            />
+            <p class="text-xs text-slate-500">If provided, this value overrides the route lookup.</p>
+          </div>
+
+          <div class="space-y-2">
+            <label for="passengers" class="block text-sm font-medium text-slate-800">Passengers</label>
+            <input
+              id="passengers"
+              name="passengers"
+              type="number"
+              min="1"
+              step="1"
+              value="1"
+              class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
+              aria-describedby="passengers-helper"
+            />
+            <p id="passengers-helper" class="text-xs text-slate-500">Include all travellers you are offsetting for.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center rounded-full bg-[#0D9488] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0fb7a4] focus:outline-none focus:ring focus:ring-[#0D9488]/40"
+            >
+              Calculate emissions
+            </button>
+            <p class="text-xs text-slate-500">Results update instantly when new data is available.</p>
+          </div>
+        </div>
+
+        <noscript>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+            Enable JavaScript to reveal the full calculator after selecting a travel mode.
           </p>
-        </div>
-      </div>
-
-      <div class="space-y-2">
-        <label for="distance" class="block text-sm font-medium text-slate-800">Distance (optional)</label>
-        <input
-          id="distance"
-          name="distance"
-          type="number"
-          min="0"
-          step="1"
-          placeholder="Enter kilometers"
-          class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-        />
-        <p class="text-xs text-slate-500">If provided, this value overrides the route lookup.</p>
-      </div>
-
-      <div class="space-y-2">
-        <label for="passengers" class="block text-sm font-medium text-slate-800">Passengers</label>
-        <input
-          id="passengers"
-          name="passengers"
-          type="number"
-          min="1"
-          step="1"
-          value="1"
-          class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-[#0D9488] focus:outline-none focus:ring focus:ring-[#0D9488]/20"
-          aria-describedby="passengers-helper"
-        />
-        <p id="passengers-helper" class="text-xs text-slate-500">Include all travellers you are offsetting for.</p>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-3 pt-2">
-        <button
-          type="submit"
-          class="inline-flex items-center justify-center rounded-full bg-[#0D9488] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0fb7a4] focus:outline-none focus:ring focus:ring-[#0D9488]/40"
-        >
-          Calculate emissions
-        </button>
-        <p class="text-xs text-slate-500">Results update instantly when new data is available.</p>
+        </noscript>
       </div>
     </form>
   </div>
