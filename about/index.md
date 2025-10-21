@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: page
 title: "About Fold & Ride"
 description: "Discover the mission, focus, and next steps for the Fold & Ride toolkit."
 ---
-
-# About Fold & Ride
 
 Fold & Ride is being assembled as a friendly launchpad for digital nomads who want fast answers and reliable planning support. The MVP focuses on outlining the key tools, guides, and community pathways that will grow into the full experience.
 
