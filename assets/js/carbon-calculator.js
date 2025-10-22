@@ -518,6 +518,20 @@ function renderBreakdown(container, breakdown = { legs: [] }) {
   `;
 }
 
+function getStickyHeaderOffset() {
+  if (typeof document === 'undefined') {
+    return 0;
+  }
+
+  const header = document.querySelector('header.sticky');
+  if (!(header instanceof HTMLElement)) {
+    return 0;
+  }
+
+  const { height } = header.getBoundingClientRect();
+  return Number.isFinite(height) ? height : 0;
+}
+
 function scrollResultsIntoView(resultsContainer) {
   if (!(resultsContainer instanceof HTMLElement)) {
     return;
@@ -531,6 +545,21 @@ function scrollResultsIntoView(resultsContainer) {
       : (callback) => callback();
 
   schedule(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const headerOffset = getStickyHeaderOffset();
+    const buffer = 16; // add a little breathing room beneath the sticky header
+
+    if (typeof window.scrollTo === 'function' && typeof scrollTarget.getBoundingClientRect === 'function') {
+      const rect = scrollTarget.getBoundingClientRect();
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const targetScroll = rect.top + currentScroll - headerOffset - buffer;
+      window.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
+      return;
+    }
+
     if (typeof scrollTarget.scrollIntoView === 'function') {
       scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
